@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Contratos</title>
+    <link th:href="@{/css/listarC.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+</head>
+<body>
+    <div class="container">
+        <h1>Listado de Contratos</h1>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar contratos...">
+            <button id="searchButton"><i class="fas fa-search"></i></button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha de Firma</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Fecha de Fin</th>
+                    <th>Empresa</th>
+                    <th>Empleado</th>
+                    <th>Funciones</th>
+                    <th>Monto</th>
+                    <th>Frecuencia de Pago</th>
+                    <th>Cédula del Usuario</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="contrato : ${contratos}">
+                    <td th:text="${contrato.id}"></td>
+                    <td th:text="${contrato.fechaFirma}"></td>
+                    <td th:text="${contrato.fechaInicio}"></td>
+                    <td th:text="${contrato.fechaFin}"></td>
+                    <td th:text="${contrato.empresa}"></td>
+                    <td th:text="${contrato.empleado}"></td>
+                    <td th:text="${contrato.funciones}"></td>
+                    <td th:text="${contrato.monto}"></td>
+                    <td th:text="${contrato.frecuenciaDePago}"></td>
+                    <td th:text="${contrato.usuarioCedula}"></td>
+                    <td>
+                        <a th:href="@{/contrato/editar/{id}(id=${contrato.id})}"><i class="fas fa-edit"></i></a>
+                        <a th:href="@{/contrato/eliminar/{id}(id=${contrato.id})}"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <a href="javascript:history.back()" class="back-button"><i class="fas fa-arrow-left"></i>Volver</a>
+    </div>
+
+    <script>
+        document.getElementById("searchButton").addEventListener("click", function() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementsByTagName("table")[0];
+            tr = table.getElementsByTagName("tr");
+        
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

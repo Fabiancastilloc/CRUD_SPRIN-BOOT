@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Contrato</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+   <link th:href="@{/css/editarC.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Contrato</h1>
+        <form th:action="@{/contrato/editar}" th:object="${contrato}" method="post">
+            <input type="hidden" th:field="*{id}">
+            
+            <label><i class="fas fa-calendar-alt"></i>Fecha de Firma:</label>
+            <input type="date" th:field="*{fechaFirma}" required>
+            
+            <label><i class="fas fa-calendar-alt"></i>Fecha de Inicio:</label>
+            <input type="date" th:field="*{fechaInicio}" required>
+            
+            <label><i class="fas fa-calendar-alt"></i>Fecha de Fin:</label>
+            <input type="date" th:field="*{fechaFin}" required>
+            
+            <label><i class="fas fa-building"></i>Empresa:</label>
+            <input type="text" th:field="*{empresa}" required>
+            
+            <label><i class="fas fa-user"></i>Empleado:</label>
+            <input type="text" th:field="*{empleado}" required>
+            
+            <label><i class="fas fa-tasks"></i>Funciones:</label>
+            <input type="text" th:field="*{funciones}" required>
+            
+            <label><i class="fas fa-dollar-sign"></i>Monto:</label>
+            <input type="number" th:field="*{monto}" required>
+            
+            <label><i class="fas fa-sync-alt"></i>Frecuencia de Pago:</label>
+            <input type="text" th:field="*{frecuenciaDePago}" required>
+            
+            <label><i class="fas fa-id-card"></i>Cédula del Usuario:</label>
+            <select th:field="*{usuarioCedula}" required>
+                <option th:each="cedula : ${cedulas}" th:value="${cedula}" th:text="${cedula}"></option>
+            </select>
+            
+            <div class="buttons">
+                <input type="submit" value="Actualizar Contrato">
+                <a href="javascript:history.back()" class="back-button"><i class="fas fa-arrow-left"></i>Volver</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

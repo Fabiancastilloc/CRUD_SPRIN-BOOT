@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Página de inicio</title>
+    <link th:href="@{/css/index.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Bienvenido al crud contratos</h1>
+
+        <div class="additional-content" th:unless="${loggedIn}">
+            <h3>Agrega contratos a tu empresa</h3>
+            <p>Utiliza nuestra plataforma para agregar y gestionar contratos para tu empresa. Nuestro sistema te permite:</p>
+            <ul>
+                <li>Registrar nuevos contratos con toda la información necesaria.</li>
+                <li>Visualizar y buscar contratos existentes en la lista de contratos.</li>
+                <li>Realizar ediciones y actualizaciones en los contratos existentes.</li>
+                <li>Eliminar contratos que ya no sean necesarios.</li>
+            </ul>
+            <p>Con nuestra plataforma de gestión de contratos, podrás mantener un control efectivo y organizado de los contratos de tu empresa.</p>
+            <p>¡Regístrate ahora y comienza a agregar contratos!</p>
+        </div>
+        
+        <div class="additional-content" th:if="${loggedIn}">
+            <h2>Contenido adicional para usuarios autenticados:</h2>
+            <p>Ahora que has iniciado sesión, tienes acceso a funciones adicionales en nuestra plataforma de gestión de contratos. Aquí puedes encontrar opciones para administrar usuarios y contratos, así como realizar otras acciones específicas según tus permisos.</p>
+            <p>Explora las diferentes opciones en el menú y comienza a aprovechar al máximo nuestra plataforma.</p>
+        </div>
+        
+        <div class="card-container" th:unless="${loggedIn}">
+            <div class="card">
+                <a href="/usuario/login" class="btn"><i class="fas fa-sign-in-alt"></i>Iniciar Sesión</a>
+            </div>
+            <div class="card">
+                <a href="/usuario/registrar" class="btn"><i class="fas fa-user-plus"></i>Registrar</a>
+            </div>
+        </div>
+        
+        <div class="card-container" th:if="${loggedIn}">
+            <div class="card">
+                <a href="/usuario/listar" class="btn"><i class="fas fa-users"></i>Listar Usuarios</a>
+            </div>
+            <div class="card">
+                <a href="/contrato/agregar" class="btn"><i class="fas fa-plus"></i>Agregar Contrato</a>
+            </div>
+            <div class="card">
+                <a href="/contrato/listar" class="btn"><i class="fas fa-list"></i>Listar Contratos</a>
+            </div>
+            <div class="card">
+                <a href="/usuario/cerrarSesion" class="btn"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a>
+            </div>
+        </div>
+        </div>
+        <div class="image-collage">
+             <img src="../imagenes/1.jpg">
+             <img src="../imagenes/2.jpg">
+             <img src="../imagenes/3.jpg">
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
